@@ -1,4 +1,5 @@
 import React from 'react';
+import LinksSidebar from './LinksSIdebar';
 
 const Sidebar = () => {
     return (
@@ -10,6 +11,7 @@ const Sidebar = () => {
             </div>
 
             {/* Botones */}
+            <LinksSidebar style={'flex flex-row items-center p-0 h-8 gap-12 w-[660px]'}/>
             <button className="w-full text-left hover:bg-gray-700 px-2 py-1 rounded">Movies</button>
             <button className="w-full text-left hover:bg-gray-700 px-2 py-1 rounded">TV Shows</button>
             <button className="w-full text-left hover:bg-gray-700 px-2 py-1 rounded">Documentales</button>
