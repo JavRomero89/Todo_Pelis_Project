@@ -1,9 +1,9 @@
 import React from 'react';
 
-import NavBarStyle from "../utils/NavBarStyle.css?inline";
+import "../utils/NavBarStyle.css";
 
 const Sidebar = () => {
-    console.log(NavBarStyle);
+    
     return (
         // <div className="bg-gray-800 text-white w-30 h-full fixed left-0 top-0 flex flex-col items-start p-6 space-y-4">
         //     {/* Logo */}
