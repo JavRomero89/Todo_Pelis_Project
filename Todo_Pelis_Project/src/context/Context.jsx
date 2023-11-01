@@ -9,7 +9,7 @@ const MovieContextProvider = ({children}) => {
     const MOVIE_API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
 
     useEffect(() => {
-        GetApi(MOVIE_API_URL).then(film => setProducts(film))
+        GetApi(MOVIE_API_URL).then(film => setMovies(film))
     }, []);
 
     return(

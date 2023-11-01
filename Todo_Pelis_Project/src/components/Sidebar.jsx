@@ -3,24 +3,19 @@ import React from 'react';
 import "../utils/NavBarStyle.css";
 
 const Sidebar = () => {
+
+  const handleSidebarMouseEnter = () => {
+    console.log('Mouse enter');
+    setIsSidebarOpen(true);
+  };
+  
+  const handleSidebarMouseLeave = () => {
+    console.log('Mouse leave');
+    setIsSidebarOpen(false);
+  };
     
     return (
-        // <div className="bg-gray-800 text-white w-30 h-full fixed left-0 top-0 flex flex-col items-start p-6 space-y-4">
-        //     {/* Logo */}
-        //     <div className="flex items-center space-x-2">
-        //         <img src="/path/to/logo.png" alt="Logo" className="w-10 h-10" />
-        //         {/* <h1 className="text-xl font-bold">Todo Pelis</h1> */}
-        //     </div>
-
-        //     {/* Botones */}
-        //     <LinksSidebar/>
-            
-            
-        //     {/* Botón de Login */}
-        //     <div className="mt-auto">
-        //         <button className="w-full bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-center">Login</button>
-        //     </div>
-        // </div>
+       
         <>
         <div>
         <div className="h2" />
