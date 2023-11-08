@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+
 
 import "../utils/NavBarStyle.css";
 
@@ -16,8 +18,8 @@ const Sidebar = () => {
     
     return (
        
-        <>
-        <div>
+        
+        <div className='fixed left-0 h-full '>
         <div className="h2" />
         <nav className="main-menu">
           <ul>
@@ -25,7 +27,7 @@ const Sidebar = () => {
               <a href="https://jbfarrow.com">
                 <i className="fa fa-home fa-2x" />
                 <span className="nav-text">
-                  Community Dashboard
+                <Link to={'/Home'}>Home</Link>
                 </span>
               </a>
             </li>
@@ -33,7 +35,7 @@ const Sidebar = () => {
               <a href="#">
                 <i className="fa fa-globe fa-2x" />
                 <span className="nav-text">
-                  Global Surveyors
+                <Link to={'/Movies'}>Movies</Link>
                 </span>
               </a>
             </li>
@@ -106,7 +108,7 @@ const Sidebar = () => {
           </ul>
         </nav>
       </div>
-        </>
+      
     );
 };
 

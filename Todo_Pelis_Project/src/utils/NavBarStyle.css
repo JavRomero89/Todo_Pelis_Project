@@ -15,7 +15,7 @@ font-size:20px;
 
 
 .main-menu:hover,nav.main-menu.expanded {
-width:250px;
+width:220px;
 overflow:visible;
 }
 
@@ -74,7 +74,7 @@ font-size:18px;
 position:relative;
 display:table-cell;
 vertical-align:middle;
-width:190px;
+width:150px;
   font-family: 'Titillium Web', sans-serif;
 }
 

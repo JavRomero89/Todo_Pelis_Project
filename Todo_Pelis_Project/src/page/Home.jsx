@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CarouselSection from '../components/CarouselSection';
 import Sidebar from '../components/Sidebar';
 
+
 const Home = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -14,14 +15,14 @@ const Home = () => {
   };
 
   const carouselStyle = {
-    marginLeft: isSidebarOpen ? '50px' : '0', 
+    marginLeft: isSidebarOpen ? '250px' : '0', 
     transition: 'margin 0.5s', 
   };
 
   return (
     <div className="w-full">
       <div
-        className="w-[60px]"
+        className="  w-[60px] h-full"
         onMouseEnter={handleSidebarMouseEnter}
         onMouseLeave={handleSidebarMouseLeave}
       >
@@ -30,6 +31,7 @@ const Home = () => {
       <div className="" style={carouselStyle}>
         <CarouselSection isSidebarOpen={isSidebarOpen} />
       </div>
+      
     </div>
   );
 };
