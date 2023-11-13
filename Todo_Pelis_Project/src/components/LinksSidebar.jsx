@@ -57,38 +57,8 @@ const LinksSidebar = (style) => {
                 </span>
               </a>
             </li>
-            <li>
-              <a href="#">
-                <i className="fa fa-book fa-2x" />
-                <span className="nav-text">
-                  Surveying Jobs
-                </span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className="fa fa-cogs fa-2x" />
-                <span className="nav-text">
-                  Tools &amp; Resources
-                </span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className="fa fa-map-marker fa-2x" />
-                <span className="nav-text">
-                  Member Map
-                </span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className="fa fa-info fa-2x" />
-                <span className="nav-text">
-                  Documentation
-                </span>
-              </a>
-            </li>
+            {/* 
+             */}
           </ul>
           <ul className="logout">
             <li>
@@ -105,7 +75,7 @@ const LinksSidebar = (style) => {
            
     </div>
     
-  )
-}
+  );
+};
 
 export default LinksSidebar
