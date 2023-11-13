@@ -190,7 +190,7 @@ function CarouselSection() {
   const [playing, setPlaying] = useState(false);
 
   // Estado para controlar cuántas películas se muestran inicialmente
-  const [initialMoviesToShow, setInitialMoviesToShow] = useState(6);
+  const [initialMoviesToShow, setInitialMoviesToShow] = useState(5);
 
   // Estado para controlar cuántas películas se mostrarán al hacer clic en el boton
   const [additionalMoviesToShow, setAdditionalMoviesToShow] = useState(30);
@@ -276,10 +276,10 @@ function CarouselSection() {
         <input
           className="border border-solid border-black"
           type="text"
-          placeholder="Search"
+          placeholder=" Search"
           onChange={(event) => setSearchKey(event.target.value)}
         />
-        <button className="btn btn-primary">Search</button>
+        <button className="btn btn-primary"> Search</button>
       </form>
 
       <div>
@@ -329,7 +329,7 @@ function CarouselSection() {
                     ) : (
                       "Sorry, no trailer available"
                     )}
-                    <h1 className="text-white">{movie.title}</h1>
+                    <h1 className="text-white text-5xl">{movie.title}</h1>
                     <p className="text-white">{movie.overview}</p>
                     <p className="text-sm text-white">
                       Lenguaje Original: {movie.original_language}
@@ -353,18 +353,18 @@ function CarouselSection() {
 
       {/* Cards de películas */}
       <div className="container mt-3">
-        <div className="row">
+        <div className="grid grid-cols-5 gap-4">
           {movies.slice(0, moviesToShow).map((movie) => (
             <div
               key={movie.id}
-              className="col-md-2 mb-3"
+              className="mr-4 mb-6 cursor-pointer"
               onClick={() => selectMovie(movie)}
             >
               <img
                 src={`${URL_IMAGE + movie.poster_path}`}
                 alt=""
                 height={600}
-                width="60%"
+                width="100%"
               />
               <h3 className="">{movie.title}</h3>
             </div>
