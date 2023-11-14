@@ -1,6 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom'
-// import "../utils/NavBarStyle.css";
 import LinksSidebar from './LinksSIdebar';
 
 const Sidebar = () => {

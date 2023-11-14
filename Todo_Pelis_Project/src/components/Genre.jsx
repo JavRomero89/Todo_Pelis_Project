@@ -1,75 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-const Genre = ({ genre, setGenre, setPage, type, value, setValue }) => {
-  const fetchGenre = async () => {
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/genre/${type}/list?api_key=ced816c83a36de6db0fb51255d2a4091&language=en-US`
-      );
-      
-      const data = await response.json();
-      setGenre(data.genres);
-    } catch (error) {
-      console.error('Error fetching genres:', error);
+const Genre = ({ genres, selectedGenres, setSelectedGenres }) => {
+    if (!genres) {
+      return null; // o algún mensaje de carga, dependiendo de tus necesidades
+    }
+  const toggleGenre = (genre) => {
+    // Verificar si el género ya está seleccionado
+    const isSelected = selectedGenres.some((selectedGenre) => selectedGenre.id === genre.id);
+
+    if (isSelected) {
+      // Si está seleccionado, quitar todos los géneros seleccionados
+      setSelectedGenres([]);
+    } else {
+      // Si no está seleccionado, establecer solo el género actual como seleccionado
+      setSelectedGenres([genre]);
     }
   };
 
-  useEffect(() => {
-    fetchGenre();
-  }, []);
-
-  // Agrega un género a la lista seleccionada y lo quita de la lista no seleccionada
-const CategoryAdd = (selectedGenre) => {
-  setValue([...value, selectedGenre]);
-  setGenre(genre.filter((g) => g.id !== selectedGenre.id));
-  setPage(1);
-};
-
-// Remueve un género de la lista seleccionada y lo agrega a la lista no seleccionada
-const CategoryRemove = (removedGenre) => {
-  setValue(value.filter((g) => g.id !== removedGenre.id));
-  setGenre([...genre, removedGenre]);
-  setPage(1);
-};
-
   return (
-    <>
-      <div className="container-fluid">
-        <div className="row mb-3">
-          <div className="col-12 d-flex flex-wrap">
-            {value &&
-              value.map((val) => {
-                const { id, name } = val;
-                return (
-                  <div className="m-2" key={id}>
-                    <button
-                      className="bg-dark text-white px-4 py-2 text-center buttons"
-                      onClick={() => CategoryRemove(val)}
-                    >
-                      {name}
-                    </button>
-                  </div>
-                );
-              })}
-
-            {genre &&
-              genre.map((gen) => {
-                const { id, name } = gen;
-                return (
-                  <div className="m-2" key={id}>
-                    <button
-                      className="bg-dark text-white px-4 py-2 text-center button"
-                      onClick={() => CategoryAdd(gen)}
-                    >
-                      {name}
-                    </button>
-                  </div>
-                );
-              })}
-          </div>
-        </div>
+    <div>
+      <div>
+        {genres.map((genre) => (
+          <button
+          key={genre.id}
+          onClick={() => toggleGenre(genre)}
+          className={`bg-${selectedGenres.some((selectedGenre) => selectedGenre.id === genre.id) ? 'blue' : 'white'} text-gray-800 py-2 px-4 rounded-full focus:outline-none focus:ring focus:border-blue-300 transition-all m-2`}
+        >
+          {genre.name}
+        </button>
+        
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 

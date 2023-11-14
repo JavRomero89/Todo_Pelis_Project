@@ -45,7 +45,7 @@ const LinksSidebar = (style) => {
               <a href="#">
                 <i className="fa fa-camera-retro fa-2x" />
                 <span className="nav-text">
-                <Link to={'/Documentales'}>Documentales</Link>
+                <Link to={'/Kids'}>Kids</Link>
                 </span>
               </a>
             </li>
@@ -65,7 +65,7 @@ const LinksSidebar = (style) => {
               <a href="#">
                 <i className="fa fa-power-off fa-2x" />
                 <span className="nav-text">
-                  Logout
+                  Login
                 </span>
               </a>
             </li>

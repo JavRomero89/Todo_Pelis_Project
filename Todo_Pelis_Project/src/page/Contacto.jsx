@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
 
 const ContactForm = () => {
   const {
@@ -29,6 +30,8 @@ const ContactForm = () => {
   };
 
   return (
+    <>
+    <Sidebar/>
     <div className="container mx-auto mt-8 p-8 bg-gray-800 max-w-md rounded-lg">
       {!isFormSubmitted ? (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -135,6 +138,7 @@ const ContactForm = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

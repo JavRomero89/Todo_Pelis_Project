@@ -3,12 +3,12 @@ import Genre from '../components/Genre';
 import Card from '../components/Card';
 import Sidebar from '../components/Sidebar';
 
-const Movies = () => {
+const Kids = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
-  const [movies, setMovies] = useState([]);
+  const [kidsContent, setKidsContent] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleSidebarMouseEnter = () => {
@@ -19,67 +19,65 @@ const Movies = () => {
     setIsSidebarOpen(false);
   };
 
-  const movieStyle = {
+  const kidsContentStyle = {
     marginLeft: isSidebarOpen ? '150px' : '0',
     transition: 'margin 0.5s',
   };
 
+  const fetchKidsGenres = async () => {
+    try {
+      const response = await fetch(
+        'https://api.themoviedb.org/3/genre/movie/list?api_key=ced816c83a36de6db0fb51255d2a4091&language=en-US'
+      );
+      const data = await response.json();
+      setKidsGenres(data.genres);
+    } catch (error) {
+      console.error('Error fetching kids genres:', error);
+    }
+  };
+  
   useEffect(() => {
-    // Llamada a la API para obtener la lista de géneros
-    const fetchGenres = async () => {
-      try {
-        const response = await fetch(
-          'https://api.themoviedb.org/3/genre/movie/list?api_key=ced816c83a36de6db0fb51255d2a4091&language=en-US'
-        );
-        const data = await response.json();
-        setGenres(data.genres);
-      } catch (error) {
-        console.error('Error fetching genres:', error);
-      }
-    };
-
-    fetchGenres();
+    fetchKidsGenres();
   }, []);
 
   useEffect(() => {
-    // Llamada a la API para obtener las películas basadas en géneros seleccionados
-    const fetchMovies = async () => {
-      const genreIds = selectedGenres.map((genre) => genre.id).join(',');
-      const url = `https://api.themoviedb.org/3/discover/movie?api_key=ced816c83a36de6db0fb51255d2a4091&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=${page}&with_genres=${genreIds}`;
-
+    // Llamada a la API para obtener contenido para niños basado en géneros seleccionados
+    const fetchKidsMovies = async () => {
+      const kidsGenreId = 16; // Este es un ejemplo, asegúrate de tener el ID correcto para el género de niños
+      const url = `https://api.themoviedb.org/3/discover/movie?api_key=ced816c83a36de6db0fb51255d2a4091&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${kidsGenreId}`;
+    
       try {
         const response = await fetch(url);
         const data = await response.json();
-        setMovies(data.results);
-        setTotalPages(data.total_pages);
-
-        // Desplazar la ventana hacia arriba al cambiar de página
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setKidsMovies(data.results);
+        setTotalKidsPages(data.total_pages);
       } catch (error) {
-        console.error('Error fetching movies:', error);
+        console.error('Error fetching kids movies:', error);
       }
     };
-
-    fetchMovies();
-  }, [selectedGenres, page]);
+    
+    useEffect(() => {
+      fetchKidsMovies();
+    }, [page]);
+    
 
   return (
-    <div >
-
+    <div>
       <div
-        className="  w-[60px] h-full"
+        className="w-[60px] h-full"
         onMouseEnter={handleSidebarMouseEnter}
         onMouseLeave={handleSidebarMouseLeave}
       >
         <Sidebar />
       </div>
-      <div className="p-20" style={movieStyle} isSidebarOpen={isSidebarOpen}>
-        <h1 className='text-center text-5xl font-bold'>Movies</h1>
+      <div className="p-20" style={kidsContentStyle} isSidebarOpen={isSidebarOpen}>
+        <h1 className='text-center text-5xl font-bold'>Kids Content</h1>
         <Genre genres={genres} selectedGenres={selectedGenres} setSelectedGenres={setSelectedGenres} />
+
 
         <div className="flex justify-center mt-4">
           <button
-            className=" bg-blue-500 text-white py-2 px-4 mr-2 rounded"
+            className="bg-blue-500 text-white py-2 px-4 mr-2 rounded"
             onClick={() => setPage((prevPage) => Math.max(prevPage - 1, 1))}
             disabled={page === 1}
           >
@@ -95,12 +93,13 @@ const Movies = () => {
         </div>
 
         <div className="flex flex-wrap">
-          {movies.map((movie) => (
-            <div key={movie.id} className="w-1/5 p-4">
-              <Card movie={movie} />
+          {kidsContent.map((content) => (
+            <div key={content.id} className="w-1/5 p-4">
+              <Card movie={content} />
             </div>
           ))}
         </div>
+
         <div className="flex justify-center mt-4">
           <button
             className="bg-blue-500 text-white py-2 px-4 mr-2 rounded"
@@ -120,6 +119,8 @@ const Movies = () => {
       </div>
     </div>
   );
-};
-export default Movies;
+  });
+}
+  
 
+export default Kids;
